@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+    <title>Save the Turtles</title>
+    <style>
+    	* { padding: 0; margin: 0; }
+    	canvas { background: #aac5ed; display: block; margin: 0 auto; }
+    </style>
+  <!--images for the turtle and all the trash icons-->
+  <img id ="turtle" width="100" height="100" src="cute1.png.png" alt="squirt">
+  <img id = "trash" width = "100" height = "100" src = "plastic_trash_bag.png" alt = "plastic bag">
+  <img id = "beer rings" width = "100" height = "100" src = "beer_rings.png" alt = "plastic beer rings">
+  <img id = "straw" width "100" height = "100" src = "green-straw.png" alt = "plastic straw">
+  <img id = "oil barrel" width = "100" height = "100" src = "oil.png" alt = "barrel of oil">
+  <img id = "water bottle" width = "100" height = "100" src = "waterbottle.png" alt = "plastic water bottle">
+  <img id = "cigarette" width = "100" height = "100" src = "cigarette.png" alt = " lit cigarette butt">
+</head>
+
+<body>
+  <!--makes the canvas background and set the border color to dark blue-->
+  <canvas id="myCanvas" width="900" height="900" style="border:1px solid #0442a0;"></canvas>
+
+  <script>
+    //declares the canvas variable
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+
+    //sets the starting coordinates for the turtle
+    var x0 = 350;
+    var y0 = 700;
+
+    //sets the starting coordinates for the trash bag
+    var x = 350;
+    //trash drops from top
+    //var y = canvas.height-950;
+    var y = canvas.height-850;
+    var dx = 0;
+    var dy = +1;
+    //starting coordinates for the beer rings
+    var x2 = 50;
+    var y2 = canvas.height-800;
+    var dy2 = +2;
+    //starting coodinates for the plastic straw
+    var x3 = 600;
+    var y3 = canvas.height-750;
+    var dy3 = +3;
+    //starting coordinates for the oil barrel
+    var x5 = 500;
+    var y5 = canvas.height-650;
+    //starting coordinates for the cigarette
+    var x6 = 450;
+    var y6 = canvas.height-675;
+    //starting coordinates for the water bottle
+    var x7 = 150;
+    var y7 = canvas.height-775;
+    //variables are set as false because right and left arrow keys aren't pressed when begin
+    var rightPressed = false;
+    var leftPressed = false;
+    //function to get water bottle moving down the screen
+    window.onload7 = function () {
+      ctx.clearRect (0, 0, canvas.width, canvas.height);
+      var g = document.getElementById("myCanvas");
+      var gtx = g.getContext("2d");
+      var bottle = document.getElementById("water bottle");
+      gtx.drawImage(bottle, x7, y7);
+      x7 += dx;
+      y7 += dy;
+    }
+setInterval(window.onload7, 10);
+  //function gets cigarette falling down screen
+    window.onload6 = function () {
+      ctx.clearRect (0, 0, canvas.width, canvas.height);
+      var f = document.getElementById("myCanvas");
+      var ftx = f.getContext("2d");
+      var cigarette = document.getElementById("cigarette");
+      ftx.drawImage(cigarette, x6, y6);
+      x6 += dx;
+      y6 += dy;
+    }
+setInterval(window.onload6, 10);
+  //straw falls down the screen
+    window.onload4 = function () {
+      ctx.clearRect (0, 0, canvas.width, canvas.height);
+      var d = document.getElementById("myCanvas");
+      var dtx = d.getContext("2d");
+      var stripedStraw = document.getElementById("straw");
+      dtx.drawImage(stripedStraw, x3, y3);
+      x3 += dx;
+      y3 += dy;
+    }
+setInterval(window.onload4, 10);
+  //oil barrel moves down screen
+  window.onload5 = function () {
+    ctx.clearRect (0, 0, canvas.width, canvas.height);
+    var h = document.getElementById("myCanvas");
+    var htx = h.getContext("2d");
+    var oil = document.getElementById("oil barrel");
+    htx.drawImage(oil, x5, y5);
+    x5 += dx;
+    y5 += dy;
+  }
+setInterval(window.onload5, 10);
+    //trash bag falls down screen
+    window.onload2 = function () {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      var a = document.getElementById("myCanvas");
+      var atx = a.getContext("2d");
+      var bag = document.getElementById("trash");
+      atx.drawImage(bag, x, y);
+      x += dx;
+      y += dy;
+    }
+setInterval(window.onload2, 10);
+    //beer rings fall down screen
+    window.onload3 = function () {
+      var b = document.getElementById("myCanvas");
+      var btx = b.getContext("2d");
+      var rings = document.getElementById("beer rings");
+      btx.drawImage(rings, x2, y2);
+      x2 += dx;
+      y2 += dy;
+    }
+  setInterval(window.onload3, 10);
+    //turtle shows up stays still until left & right arrows pressed
+    window.onload = function() {
+      var c = document.getElementById("myCanvas");
+      var ctx = c.getContext("2d");
+      var img = document.getElementById("turtle");
+      ctx.drawImage(img, x0, y0);
+      //moves turtle 7 pixels to the left after hit border wall
+      if (x0 > canvas.width-200){
+        console.log("hit wall with right");
+        x0 -= 7;
+      }
+      //moves turtle 7 pixels to right after hit border
+      else if (x0 < -0) {
+        console.log("hit wall with left");
+        x0 += 7;
+      }
+    }
+//built in javascript functions that can tell whether or not left/right keys are pressed
+document.addEventListener("keydown", keyDownHandler, false);
+document.addEventListener("keyup", keyUpHandler, false);
+//when rightPressed is true turtle moves 20 pixels to the right when leftPressed moves 20 pixels left
+function keyDownHandler(e) {
+    if(e.keyCode == 39) {
+        rightPressed = true;
+        console.log("right pressed");
+        x0 += 20;
+    }
+    else if(e.keyCode == 37) {
+        leftPressed = true;
+        console.log("left pressed");
+        x0 -= 20;
+    }
+}
+
+function keyUpHandler(e) {
+    if(e.keyCode == 39) {
+        rightPressed = false;
+    }
+    else if(e.keyCode == 37) {
+        leftPressed = false;
+    }
+  }
+setInterval(window.onload, 10);
+
+  </script>
+</body>
+</html>
